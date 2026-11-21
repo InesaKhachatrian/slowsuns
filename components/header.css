@@ -1,0 +1,115 @@
+/* header.css · site header, menu sheet, language switch, footer.
+   Header: logo left · Places, Did you know? centred · EN · ՀՅ right.
+   .site-header--photo  transparent over the home hero (white text)
+   .site-header         white, sticky, bottom line (every other page) */
+
+.site-header {
+  position: sticky; inset-block-start: 0; z-index: 30;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+  block-size: var(--header-h);
+  padding-inline: var(--gutter);
+  background: var(--header-bg);
+  border-block-end: 1px solid var(--header-line);
+}
+.site-header--photo {
+  position: absolute; inset-inline: 0;
+  block-size: auto; padding-block: var(--pad-box);
+  background: transparent; border: 0;
+  color: var(--text-on-photo);
+  --header-link: var(--text-on-photo-soft);
+  --header-link-on: var(--text-on-photo);
+  --lang-line: var(--line-on-photo);
+}
+
+.logo {
+  display: inline-flex; align-items: center; gap: var(--gap-related);
+  min-block-size: var(--target-min);
+  font-size: var(--text-logo); font-weight: var(--weight-strong);
+  letter-spacing: var(--tracking-logo);
+  text-decoration: none; color: inherit;
+}
+.logo svg { inline-size: 16px; block-size: 14px; fill: currentColor; }
+
+.site-nav { display: flex; gap: var(--gap-inline); }
+.site-nav a {
+  display: inline-flex; align-items: center; min-block-size: var(--target-min);
+  padding-inline: var(--gap-stack);
+  font-size: var(--text-ui); font-weight: var(--weight-medium);
+  color: var(--header-link); text-decoration: none; white-space: nowrap;
+}
+.site-nav a:hover { color: var(--header-link-on); }
+.site-nav a[aria-current="page"] {
+  color: var(--header-link-on); font-weight: var(--weight-strong);
+  text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 2px;
+}
+.site-header__end { display: flex; justify-content: flex-end; align-items: center; gap: var(--gap-inline); }
+
+.lang-switch {
+  display: inline-flex; align-items: center; min-block-size: var(--target-min);
+  padding-inline: var(--gap-related);
+  border: 1px solid var(--lang-line); border-radius: var(--lang-radius);
+  background: transparent; color: inherit;
+  font-family: var(--font-mono); font-size: var(--text-label); letter-spacing: var(--tracking-switch);
+  text-decoration: none; white-space: nowrap;
+}
+.menu-btn { display: none; }
+
+@media (max-width: 760px) {
+  :root { --header-h: 60px; }
+  .site-header { grid-template-columns: 1fr auto; padding-inline: var(--gutter) var(--gap-inline); }
+  .site-header .lang-switch { display: none; }
+  .site-nav { gap: 0; }
+  .site-nav a { padding-inline: var(--gap-inline); font-size: var(--text-small); }
+  /* Links go into the menu sheet, every page */
+  .site-header .site-nav { display: none; }
+  .site-header .menu-btn { display: inline-grid; }
+  .site-header--photo { grid-template-columns: 1fr auto; padding: var(--gap-related) var(--gutter); }
+}
+
+/* Menu sheet (phones, home hero) */
+.menu-sheet {
+  position: fixed; inset: 0; z-index: 60;
+  display: grid; align-content: start; gap: var(--gap-stack);
+  padding: var(--gap-related) var(--gutter) var(--gap-block);
+  background: var(--surface-page); color: var(--text-primary);
+}
+.menu-sheet[hidden] { display: none; }
+.menu-sheet__top { display: flex; justify-content: space-between; align-items: center; }
+.menu-sheet nav { display: grid; }
+.menu-sheet nav a {
+  display: flex; align-items: center; min-block-size: calc(var(--target-min) + var(--gap-related));
+  border-block-end: 1px solid var(--border-subtle);
+  font-family: var(--font-display); font-size: var(--text-h3); font-weight: var(--weight-heading);
+  text-decoration: none;
+}
+.menu-sheet .lang-switch { justify-self: start; --lang-line: var(--border-control); }
+
+/* ---------- Footer (plain, every page) ---------- */
+.site-footer { border-block-start: 1px solid var(--border-subtle); background: var(--surface-page); }
+.site-footer__in {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+  gap: var(--gap-inline) var(--gap-stack);
+  padding-block: var(--pad-control-x) var(--gap-block);
+  font-size: var(--text-small); color: var(--text-muted);
+}
+.site-footer .logo { color: var(--text-primary); }
+.site-footer nav { display: flex; flex-wrap: wrap; gap: var(--gap-hair); }
+.site-footer nav a {
+  display: inline-flex; align-items: center; min-block-size: var(--target-min);
+  padding-inline: var(--gap-inline); text-decoration: none;
+}
+.site-footer nav a:hover { color: var(--text-primary); text-decoration: underline; text-underline-offset: 5px; }
+
+/* Logo (Nov 18): road-to-the-sun mark + "Slowsuns" in the display face, normal case */
+.logo { font-family: var(--font-display); font-size: var(--text-logo-display); font-weight: var(--weight-heading); letter-spacing: 0; text-transform: none; gap: 10px; --logo-cut: var(--surface-page); }
+.logo .logo__mark { inline-size: 32px; block-size: 32px; flex: none; display: block; }
+.logo__tile, .logo__lane { fill: currentColor; stroke: currentColor; }
+.logo__lane { fill: none; }
+.logo__tile { stroke: none; }
+.logo__road { fill: var(--logo-cut); }
+.logo__sun { fill: var(--map-highlight); }
+.on-photo .logo, .site-header--photo .logo { --logo-cut: var(--text-primary); }
+.site-footer .logo { font-size: var(--text-logo-display-sm); }
+.site-footer .logo .logo__mark { inline-size: 24px; block-size: 24px; }
+:lang(hy) .logo { text-transform: none; letter-spacing: 0; }
+@media (max-width: 760px) { .logo { font-size: var(--text-logo-display-sm); } .logo .logo__mark { inline-size: 28px; block-size: 28px; } }

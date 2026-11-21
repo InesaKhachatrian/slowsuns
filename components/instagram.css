@@ -1,0 +1,41 @@
+/* instagram.css · home Instagram band. Photo banner (30 % dark layer), centred white frame
+   with the heading and one line inside, a dark panel joined below with the Instagram button.
+   The only place Inesa's own photo appears (exception, Nov 13). */
+
+.ig-sec { padding-block: var(--section-tight); }
+.ig {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  block-size: var(--ig-h); padding: var(--gap-wide) var(--pad-box);
+  border-radius: var(--ig-radius);
+  background: var(--surface-photo);
+}
+.ig > img { position: absolute; inset: 0; z-index: -2; inline-size: 100%; block-size: 100%; object-fit: cover; object-position: 50% 15%; }
+.ig::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--ig-shade); }
+.ig__card { inline-size: min(100%, 372px); display: flex; flex-direction: column; color: var(--text-on-photo); }
+.ig__frame {
+  block-size: 370px; padding: var(--pad-box) 22px;
+  border: 1.5px solid var(--ig-frame); border-block-end: 0;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  background: linear-gradient(180deg, var(--scrim-strong) 0%, var(--scrim-clear) 42%);
+}
+.ig__title { font-family: var(--font-body); font-weight: var(--weight-strong); font-size: var(--text-ig); line-height: 1.12; }
+.ig__title em { font-style: normal; color: inherit; }
+.ig__frame p { margin-block-start: var(--gap-related); font-size: var(--text-ui); line-height: 1.45; color: var(--text-on-photo-soft); max-inline-size: 16.25rem; }
+.ig__panel {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 14px 14px var(--gap-related);
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  background: var(--ig-panel);
+}
+.ig__note { font-size: var(--text-logo); color: var(--text-on-photo-soft); }
+
+@media (max-width: 760px) {
+  .ig-sec { padding: 0; }
+  .ig-sec .wrap { padding: 0; }
+  :root { --ig-h: 540px; }
+  .ig { border-radius: 0; padding: var(--gap-block) var(--gutter); }
+  .ig__card { inline-size: min(100%, 280px); }
+  .ig__frame { block-size: 340px; }
+  .ig .btn--instagram { font-size: var(--text-micro); letter-spacing: 0; white-space: normal; gap: var(--gap-related); }
+}

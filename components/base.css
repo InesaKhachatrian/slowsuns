@@ -1,0 +1,118 @@
+/* base.css · reset, type, layout helpers, labels, focus, motion safety.
+   Semantic tokens only. */
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + var(--gap-stack));
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  font-weight: var(--weight-body);
+  line-height: var(--leading-copy);
+  color: var(--text-primary);
+  background: var(--surface-page);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-theme] { color: var(--text-primary); background: var(--surface-page); }
+
+img, svg, video { display: block; max-inline-size: 100%; }
+img { block-size: auto; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: inherit; }
+a, button, select { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+ul[class], ol[class], nav ol, nav ul, .island__legend ol, .tips ul { list-style: none; padding: 0; }
+
+:focus-visible { outline: var(--focus-width) solid var(--focus-ring); outline-offset: var(--focus-offset); }
+
+/* ---------- Type ----------
+   Headings: Playfair Display 600. Text: Urbanist. Labels: Space Mono, uppercase. */
+h1, h2, h3, .t-hero, .t-title, .t-page, .t-h2, .t-h2-page, .t-h3 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-heading);
+  line-height: var(--leading-heading);
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+.t-hero     { font-size: var(--text-hero); line-height: var(--leading-display); }
+.t-title    { font-size: var(--text-title); line-height: var(--leading-title); }
+.t-page     { font-size: var(--text-page); line-height: var(--leading-display); }
+.t-h2       { font-size: var(--text-h2); }
+.t-h2-page  { font-size: var(--text-h2-page); }
+.t-h3       { font-size: var(--text-h3); line-height: var(--leading-snug); }
+.t-lead     { font-size: var(--text-lead); line-height: var(--leading-read); color: var(--text-body); }
+.t-lede     { font-size: var(--text-lede); color: var(--text-muted); max-inline-size: 35rem; }
+.t-body     { color: var(--text-body); }
+.t-muted    { color: var(--text-muted); }
+.t-small    { font-size: var(--text-small); }
+p { text-wrap: pretty; }
+
+/* One highlighted phrase per heading: italic; gold on navy. */
+:is(h1, h2, h3) em { font-style: italic; color: var(--highlight); }
+:lang(hy) :is(h1, h2, h3) em { font-style: normal; }
+:lang(hy) :is(h1, h2, h3) { line-height: calc(var(--leading-heading) + var(--leading-extra-hy)); }
+
+/* Mono labels: the only place for uppercase + letter-spacing. Off in Armenian (Q18). */
+.eyebrow, .mono-label, .btn--mono, .label, .fact-label {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+.eyebrow {
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  color: var(--eyebrow);
+  margin-block-end: var(--gap-related);
+}
+.mono-label, .fact-label {
+  font-size: var(--text-micro);
+  letter-spacing: var(--tracking-label);
+  color: var(--text-muted);
+}
+:lang(hy) :is(.eyebrow, .mono-label, .btn--mono, .label, .fact-label) {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ---------- Layout ---------- */
+.wrap { max-inline-size: calc(var(--page-max) + 2 * var(--gutter)); margin-inline: auto; padding-inline: var(--gutter); }
+.page-top { padding-block-start: var(--gap-page-top); }
+.page-end { padding-block-end: var(--section-page); }
+.stack > * + * { margin-block-start: var(--gap-stack); }
+
+.visually-hidden {
+  position: absolute !important; inline-size: 1px; block-size: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+.skip-link {
+  position: absolute; inset-inline-start: var(--gap-stack); inset-block-start: -100px; z-index: 100;
+  padding: var(--gap-inline) var(--gap-stack); border-radius: var(--radius-chip);
+  background: var(--action-solid); color: var(--action-solid-text);
+}
+.skip-link:focus { inset-block-start: var(--gap-stack); }
+
+/* ---------- Photos ----------
+   <figure class="photo"><img …><span class="photo__label">[Photo: Split]</span></figure> */
+.photo { position: relative; overflow: hidden; background: var(--surface-photo); }
+.photo > img { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; object-fit: cover; }
+.photo__label {
+  position: absolute; inset-inline-start: var(--gap-related); inset-block-end: var(--gap-related); z-index: 2;
+  padding: var(--gap-tiny) var(--gap-inline); border-radius: var(--radius-switch);
+  background: var(--caption-bg); color: var(--text-on-photo);
+  font-family: var(--font-mono); font-size: var(--text-micro); letter-spacing: var(--tracking-caption);
+}
+
+/* ---------- Flags ---------- */
+.flag { display: block; flex: none; inline-size: 24px; block-size: 16px; border-radius: var(--radius-flag); box-shadow: var(--flag-edge); }
+
+/* ---------- Motion safety ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; }
+}

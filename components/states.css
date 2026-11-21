@@ -1,0 +1,98 @@
+/* states.css · error and empty states (DESIGN.md §6.6).
+   Every state says what happened in plain words and offers one way forward (rules.md 8).
+   Semantic tokens only; the navy theme swaps the colours by itself. */
+
+/* State message: map or fact didn't load, no guides yet, guide coming soon */
+.state {
+  display: grid; justify-items: start; align-content: center; gap: var(--gap-related);
+  padding: var(--gap-block) var(--pad-box);
+  border-radius: var(--radius-box);
+  color: var(--text-body);
+}
+.state--dashed { border: 1px dashed var(--border-control); }
+.state--sunken { background: var(--surface-sunken); }
+.state--center { justify-items: center; text-align: center; }
+.state__icon { inline-size: 28px; block-size: 28px; color: var(--eyebrow); }
+.state__title {
+  margin: 0; font-family: var(--font-display); font-weight: var(--weight-heading);
+  font-size: var(--text-h3); line-height: var(--leading-snug); color: var(--text-primary);
+}
+.state__text { margin: 0; max-inline-size: 28rem; font-size: var(--text-ui); line-height: var(--leading-copy); }
+.state__actions { display: flex; flex-wrap: wrap; gap: var(--gap-related); margin-block-start: var(--gap-hair); }
+
+/* The existing map fallback takes the same parts */
+.map-failed .state__title { font-size: var(--text-h3); }
+
+/* Photo didn't load: the box keeps its size and corners, the description shows */
+.photo-failed {
+  display: grid; place-items: center; align-content: center; gap: var(--gap-inline);
+  padding: var(--pad-box); background: var(--surface-photo);
+  color: var(--text-body); font-size: var(--text-small); text-align: center;
+}
+.photo-failed img { display: none; }
+
+/* Not in Armenian yet: shown at the top of an English-only page */
+.lang-note {
+  display: flex; gap: var(--gap-related); align-items: flex-start;
+  max-inline-size: 45rem; margin-block-start: var(--gap-stack);
+  padding: 14px var(--gap-stack); border-radius: var(--radius-photo-sm);
+  background: var(--surface-sunken); font-size: var(--text-ui); color: var(--text-body);
+}
+.lang-note[hidden] { display: none; }
+.lang-note p { margin: 0; }
+.lang-note [lang="hy"] { color: var(--text-primary); font-weight: var(--weight-label); }
+.lang-note__en { font-size: var(--text-small); color: var(--text-muted); }
+
+/* You're offline: a bar under the header, gone once the connection is back */
+.offline-bar {
+  position: sticky; inset-block-start: var(--header-h); z-index: 20;
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap-inline) var(--gap-related);
+  padding: var(--gap-inline) var(--gutter);
+  background: var(--action-solid); color: var(--action-solid-text); font-size: var(--text-ui);
+}
+.offline-bar[hidden] { display: none; }
+.offline-bar p { margin: 0; flex: 1 1 14rem; }
+.offline-bar button {
+  min-block-size: var(--target-min); padding: 0; border: 0; background: none; color: inherit;
+  font: inherit; font-weight: var(--weight-strong); text-decoration: underline; text-underline-offset: 4px; cursor: pointer;
+}
+
+/* Toast: a short message near the button that caused it (e.g. sharing didn't open) */
+.toast {
+  display: inline-flex; align-items: center; gap: var(--gap-related);
+  max-inline-size: 28rem; padding: 14px 18px; border-radius: var(--radius-photo-sm);
+  background: var(--surface-raised); border: 1px solid var(--border-subtle);
+  font-size: var(--text-ui); color: var(--text-body);
+}
+.toast[hidden] { display: none; }
+.toast p { margin: 0; }
+.toast strong { color: var(--status-good); }
+
+/* 404, with the road illustration (extends .lost in page-parts.css) */
+.lost--art { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; column-gap: var(--gap-grid); justify-items: stretch; }
+.lost--art .t-page { margin-block: var(--gap-related) var(--gap-stack); }
+.lost--art .t-lede { margin-block: 0 var(--gap-block); }
+.lost--art .lost__actions { margin-block-end: var(--gap-block); }
+.lost__help {
+  margin: 0; padding-block-start: var(--pad-box); border-block-start: 1px solid var(--border-subtle);
+  max-inline-size: 32rem; font-size: var(--text-ui); color: var(--text-muted);
+}
+.lost__art svg { display: block; inline-size: 100%; max-inline-size: 28rem; block-size: auto; margin-inline: auto; }
+.lost__art .art-ground { fill: var(--surface-sunken); }
+.lost__art .art-hill   { fill: var(--surface-photo); }
+.lost__art .art-sun    { fill: var(--map-highlight); }
+.lost__art .art-road   { stroke: var(--action-solid); }
+.lost__art .art-lines  { stroke: var(--action-solid-text); }
+.lost__art .art-bar    { fill: var(--accent); }
+.lost__art .art-stripe { stroke: var(--action-solid-text); }
+.lost__art .art-post   { fill: var(--text-primary); }
+
+@media (max-width: 1080px) {
+  .lost--art { grid-template-columns: minmax(0, 1fr); row-gap: var(--gap-group); }
+  .lost__art { order: -1; }
+  .lost__art svg { max-inline-size: 20rem; }
+}
+@media (max-width: 760px) {
+  .lost__art svg { max-inline-size: 15rem; }
+  .state { padding: var(--pad-box) var(--gap-stack); }
+}

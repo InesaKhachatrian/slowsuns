@@ -1,0 +1,20 @@
+/* components/index.css · loads every component, in order.
+   Pages link two files:  tokens.css  then  components/index.css
+   For the live site, bundle these into one file (fewer requests, faster). */
+
+@import url("fonts.css");
+@import url("base.css");
+@import url("icons.css");
+@import url("shapes.css");
+@import url("button.css");
+@import url("label.css");
+@import url("header.css");
+@import url("hero.css");
+@import url("place-panel.css");
+@import url("month-map.css");
+@import url("instagram.css");
+@import url("places.css");
+@import url("destination.css");
+@import url("facts.css");
+@import url("page-parts.css");
+@import url("states.css");

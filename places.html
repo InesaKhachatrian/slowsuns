@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Places · Slowsuns</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="components/index.css">
+<script src="components/site.js" defer></script>
+</head>
+<body data-en-only>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+    <a class="logo" href="index.html"><svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><rect class="logo__tile" width="32" height="32" rx="9"/><path class="logo__road" d="M7 32 C8 24 21 23.5 20.5 16.5 C20.1 12.5 15.6 11.6 16.2 8.2 L17.4 8.2 C17 11.3 22.8 12.4 23.4 16.6 C24.3 23.8 13.5 25 15.5 32 Z"/><path class="logo__lane" d="M11.4 30.5 C12.4 25 21.6 23.8 21.9 17 C22 13.5 17.6 12 16.8 9.4" fill="none" stroke-width="1" stroke-dasharray="1.6 1.6"/><circle class="logo__sun" cx="23.5" cy="8.5" r="3.2"/></svg>Slowsuns</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="places.html" aria-current="page" data-hy="Վայրեր">Places</a>
+      <a href="facts.html" data-hy="Գիտե՞իր">Did you know?</a>
+    </nav>
+    <div class="site-header__end">
+      <button class="lang-switch" type="button" data-toggle-lang aria-label="Switch language">EN · ՀՅ</button>
+      <button class="btn-icon menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu-sheet" data-menu-open><span class="icon icon--menu icon--24" aria-hidden="true"></span></button>
+    </div>
+  </header>
+<div class="offline-bar" data-offline-bar role="status" hidden><p>You're offline. Photos and the map will load when you're back online.</p><button type="button">Try again</button></div>
+<div class="wrap"><div class="lang-note" role="note" hidden><span class="icon icon--info" aria-hidden="true"></span><div><p lang="hy">Այս էջը դեռ հայերեն չկա։ Ստորև՝ անգլերեն տարբերակը։</p><p class="lang-note__en">This page isn't in Armenian yet. Here is the English version.</p></div></div></div>
+<div class="menu-sheet" id="menu-sheet" hidden>
+  <div class="menu-sheet__top"><a class="logo" href="index.html"><svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><rect class="logo__tile" width="32" height="32" rx="9"/><path class="logo__road" d="M7 32 C8 24 21 23.5 20.5 16.5 C20.1 12.5 15.6 11.6 16.2 8.2 L17.4 8.2 C17 11.3 22.8 12.4 23.4 16.6 C24.3 23.8 13.5 25 15.5 32 Z"/><path class="logo__lane" d="M11.4 30.5 C12.4 25 21.6 23.8 21.9 17 C22 13.5 17.6 12 16.8 9.4" fill="none" stroke-width="1" stroke-dasharray="1.6 1.6"/><circle class="logo__sun" cx="23.5" cy="8.5" r="3.2"/></svg>Slowsuns</a><button class="btn-icon" type="button" aria-label="Close menu" data-menu-close><span class="icon icon--close icon--24" aria-hidden="true"></span></button></div>
+  <nav aria-label="Main"><a href="places.html" aria-current="page" data-hy="Վայրեր">Places</a>
+      <a href="facts.html" data-hy="Գիտե՞իր">Did you know?</a></nav>
+  <button class="lang-switch" type="button" data-toggle-lang aria-label="Switch language">EN · ՀՅ</button>
+</div>
+
+<main id="main" class="wrap page-top page-end page-head">
+  <p class="eyebrow">Places I've been</p>
+  <h1 class="t-page">Places</h1>
+  <p class="t-lede">Every guide with the best time to go, how long to stay and a real budget.</p>
+
+  <div class="filters">
+    <div class="filters__chips" role="group" aria-label="Filter by region">
+      <button type="button" class="chip" data-region="all" aria-pressed="true">All</button>
+      <button type="button" class="chip" data-region="eu" aria-pressed="false">Europe</button>
+      <button type="button" class="chip" data-region="mea" aria-pressed="false">Middle East &amp; Africa</button>
+      <button type="button" class="chip" data-region="asia" aria-pressed="false">Asia</button>
+    </div>
+    <label class="filters__month" for="best-month">Best time
+      <span class="select"><select id="best-month"><option value="-1">Any month</option><option value="0">January</option><option value="1">February</option><option value="2">March</option><option value="3">April</option><option value="4">May</option><option value="5">June</option><option value="6">July</option><option value="7">August</option><option value="8">September</option><option value="9">October</option><option value="10">November</option><option value="11">December</option></select><span class="icon icon--chevron-down" aria-hidden="true"></span></span>
+    </label>
+  </div>
+
+  <p class="count" data-count aria-live="polite">6 places</p>
+
+  <div class="place-grid" data-place-grid>
+      <a class="place-card" href="split.html" data-region="eu" data-best="4,5,8">
+        <figure class="photo place-card__photo"><img src="assets/photos/split.jpg" alt="" loading="lazy"></figure>
+        <span class="place-card__head"><span class="place-card__name">Split</span><span class="label"><img class="flag" src="assets/flags/hr.svg" alt=""><span>Croatia</span></span></span>
+        <dl class="facts-2">
+          <div><dt class="fact-label">Best time</dt><dd><span class="icon icon--calendar" aria-hidden="true"></span>May–Jun, Sep</dd></div>
+          <div><dt class="fact-label">Trip length</dt><dd><span class="icon icon--clock" aria-hidden="true"></span>[days] days</dd></div>
+          <div><dt class="fact-label">Budget</dt><dd><span class="icon icon--wallet" aria-hidden="true"></span>from €[budget]</dd></div>
+          <div><dt class="fact-label">Last checked</dt><dd><span class="icon icon--check" aria-hidden="true"></span>[month year]</dd></div>
+        </dl>
+      </a>
+      <a class="place-card" href="prague.html" data-region="eu" data-best="3,4,8,9">
+        <figure class="photo place-card__photo"><img src="assets/photos/prague.jpg" alt="" loading="lazy"></figure>
+        <span class="place-card__head"><span class="place-card__name">Prague</span><span class="label"><img class="flag" src="assets/flags/cz.svg" alt=""><span>Czech Republic</span></span></span>
+        <dl class="facts-2">
+          <div><dt class="fact-label">Best time</dt><dd><span class="icon icon--calendar" aria-hidden="true"></span>Apr–May, Sep–Oct</dd></div>
+          <div><dt class="fact-label">Trip length</dt><dd><span class="icon icon--clock" aria-hidden="true"></span>[days] days</dd></div>
+          <div><dt class="fact-label">Budget</dt><dd><span class="icon icon--wallet" aria-hidden="true"></span>from €[budget]</dd></div>
+          <div><dt class="fact-label">Last checked</dt><dd><span class="icon icon--check" aria-hidden="true"></span>[month year]</dd></div>
+        </dl>
+      </a>
+      <a class="place-card" href="rhodes.html" data-region="eu" data-best="4,5,8,9,10">
+        <figure class="photo place-card__photo"><img src="assets/photos/rhodes.jpg" alt="" loading="lazy"></figure>
+        <span class="place-card__head"><span class="place-card__name">Rhodes</span><span class="label"><img class="flag" src="assets/flags/gr.svg" alt=""><span>Greece</span></span></span>
+        <dl class="facts-2">
+          <div><dt class="fact-label">Best time</dt><dd><span class="icon icon--calendar" aria-hidden="true"></span>May–Jun, Sep–Nov</dd></div>
+          <div><dt class="fact-label">Trip length</dt><dd><span class="icon icon--clock" aria-hidden="true"></span>[days] days</dd></div>
+          <div><dt class="fact-label">Budget</dt><dd><span class="icon icon--wallet" aria-hidden="true"></span>from €[budget]</dd></div>
+          <div><dt class="fact-label">Last checked</dt><dd><span class="icon icon--check" aria-hidden="true"></span>[month year]</dd></div>
+        </dl>
+      </a>
+      <a class="place-card" href="cyprus.html" data-region="eu" data-best="3,4,5,8,9,10">
+        <figure class="photo place-card__photo"><img src="assets/photos/cyprus.jpg" alt="" loading="lazy"></figure>
+        <span class="place-card__head"><span class="place-card__name">Cyprus</span><span class="label"><img class="flag" src="assets/flags/cy.svg" alt=""><span>Cyprus</span></span></span>
+        <dl class="facts-2">
+          <div><dt class="fact-label">Best time</dt><dd><span class="icon icon--calendar" aria-hidden="true"></span>Apr–Jun, Sep–Nov</dd></div>
+          <div><dt class="fact-label">Trip length</dt><dd><span class="icon icon--clock" aria-hidden="true"></span>[days] days</dd></div>
+          <div><dt class="fact-label">Budget</dt><dd><span class="icon icon--wallet" aria-hidden="true"></span>from €[budget]</dd></div>
+          <div><dt class="fact-label">Last checked</dt><dd><span class="icon icon--check" aria-hidden="true"></span>[month year]</dd></div>
+        </dl>
+      </a>
+      <a class="place-card" href="egypt.html" data-region="mea" data-best="9,10,11,0,1,2,3">
+        <figure class="photo place-card__photo"><img src="assets/photos/egypt.jpg" alt="" loading="lazy"></figure>
+        <span class="place-card__head"><span class="place-card__name">Egypt</span><span class="label"><img class="flag" src="assets/flags/eg.svg" alt=""><span>Egypt</span></span></span>
+        <dl class="facts-2">
+          <div><dt class="fact-label">Best time</dt><dd><span class="icon icon--calendar" aria-hidden="true"></span>Oct–Apr</dd></div>
+          <div><dt class="fact-label">Trip length</dt><dd><span class="icon icon--clock" aria-hidden="true"></span>[days] days</dd></div>
+          <div><dt class="fact-label">Budget</dt><dd><span class="icon icon--wallet" aria-hidden="true"></span>from €[budget]</dd></div>
+          <div><dt class="fact-label">Last checked</dt><dd><span class="icon icon--check" aria-hidden="true"></span>[month year]</dd></div>
+        </dl>
+      </a>
+      <a class="place-card" href="sri-lanka.html" data-region="asia" data-best="10,11,0,1,2,3">
+        <figure class="photo place-card__photo"><img src="assets/photos/sri-lanka.jpg" alt="" loading="lazy"></figure>
+        <span class="place-card__head"><span class="place-card__name">Sri Lanka</span><span class="label"><img class="flag" src="assets/flags/lk.svg" alt=""><span>Sri Lanka</span></span></span>
+        <dl class="facts-2">
+          <div><dt class="fact-label">Best time</dt><dd><span class="icon icon--calendar" aria-hidden="true"></span>Nov–Apr</dd></div>
+          <div><dt class="fact-label">Trip length</dt><dd><span class="icon icon--clock" aria-hidden="true"></span>[days] days</dd></div>
+          <div><dt class="fact-label">Budget</dt><dd><span class="icon icon--wallet" aria-hidden="true"></span>from €[budget]</dd></div>
+          <div><dt class="fact-label">Last checked</dt><dd><span class="icon icon--check" aria-hidden="true"></span>[month year]</dd></div>
+        </dl>
+      </a>
+  </div>
+  <div class="empty" data-empty hidden>
+    <p>No guides match these filters yet.</p>
+    <button type="button" class="btn btn--outline btn--mono" data-clear>Clear filters</button>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__in">
+    <a class="logo" href="index.html"><svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><rect class="logo__tile" width="32" height="32" rx="9"/><path class="logo__road" d="M7 32 C8 24 21 23.5 20.5 16.5 C20.1 12.5 15.6 11.6 16.2 8.2 L17.4 8.2 C17 11.3 22.8 12.4 23.4 16.6 C24.3 23.8 13.5 25 15.5 32 Z"/><path class="logo__lane" d="M11.4 30.5 C12.4 25 21.6 23.8 21.9 17 C22 13.5 17.6 12 16.8 9.4" fill="none" stroke-width="1" stroke-dasharray="1.6 1.6"/><circle class="logo__sun" cx="23.5" cy="8.5" r="3.2"/></svg>Slowsuns</a>
+    <nav aria-label="Footer"><a href="places.html">Places</a><a href="facts.html">Did you know?</a></nav>
+    <span>© 2026 Slowsuns</span>
+  </div>
+</footer>
+</body>
+</html>

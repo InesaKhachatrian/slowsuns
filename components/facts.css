@@ -1,0 +1,110 @@
+/* facts.css · "Did you know?" fact of the day.
+   Topic chips · game band (navy): wheel with pointer and SPIN hub, status, sound toggle ·
+   before the spin a dashed "?" box, after it the fact card (photo, topic chip, label, title, text,
+   "Read my … guide" + "Share this fact") · confetti. One spin a day. */
+
+.topics { display: flex; flex-wrap: wrap; gap: var(--gap-inline); margin-block-start: var(--pad-box); }
+.topics li {
+  display: inline-flex; align-items: center; gap: var(--gap-inline);
+  padding: 5px var(--gap-related) 5px 5px; border-radius: var(--radius-chip);
+  background: var(--surface-sunken); font-size: var(--text-small); font-weight: var(--weight-label);
+}
+.topics img { inline-size: 36px; block-size: 36px; border-radius: var(--radius-chip); }
+
+.game {
+  position: relative; overflow: hidden;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap-grid); align-items: center;
+  margin-block-start: var(--gap-group); padding: var(--gap-grid);
+  border-radius: var(--stage-radius);
+}
+.game__wheelcol { display: flex; flex-direction: column; align-items: center; gap: var(--pad-control-x); }
+.wheel { position: relative; inline-size: 100%; max-inline-size: 440px; aspect-ratio: 1; }
+.wheel__disc { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; will-change: transform; }
+.wheel__pointer {
+  position: absolute; inset-inline-start: 50%; inset-block-start: -12px; z-index: 6;
+  inline-size: 40px; block-size: 48px; margin-inline-start: -20px;
+  color: var(--wheel-pointer);
+  filter: drop-shadow(0 0 8px var(--wheel-pointer-glow));
+  pointer-events: none;
+}
+.wheel__hub {
+  position: absolute; inset-inline-start: 50%; inset-block-start: 50%; z-index: 4;
+  inline-size: 96px; block-size: 96px; margin: -48px 0 0 -48px;
+  display: grid; place-items: center; padding: 0;
+  border: 1.5px solid var(--hub-line); border-radius: var(--radius-round);
+  background: var(--hub-bg); color: var(--text-primary);
+  box-shadow: 0 0 0 6px var(--surface-page);
+  font-family: var(--font-mono); font-size: var(--text-logo); font-weight: var(--weight-strong);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  transition: transform var(--motion-base) var(--motion-ease), background-color var(--motion-base);
+}
+.wheel__hub:hover:not(:disabled) { transform: scale(1.04); background: var(--hub-hover); }
+.wheel__hub:active:not(:disabled) { transform: scale(.97); }
+.wheel__hub:disabled { cursor: default; color: var(--text-muted); }
+:lang(hy) .wheel__hub { letter-spacing: 0; text-transform: none; }
+.game__status { min-block-size: 28px; font-size: var(--text-body); font-weight: var(--weight-label); text-align: center; }
+.game__status b { font-family: var(--font-mono); color: var(--highlight); }
+.sound {
+  display: inline-flex; align-items: center; gap: var(--gap-inline);
+  min-block-size: var(--target-min); padding-inline: 14px;
+  border: 1px solid var(--border-control); border-radius: var(--radius-round);
+  background: transparent; color: var(--text-body); font-size: var(--text-small); font-weight: var(--weight-label);
+}
+.sound:hover { color: var(--text-primary); border-color: var(--text-muted); }
+.sound .icon { --icon-size: 18px; }
+
+.game__factcol { position: relative; min-inline-size: 0; }
+.fact-wait {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 14px;
+  padding: var(--gap-group); border: 1.5px dashed var(--border-control); border-radius: var(--fact-radius);
+}
+.fact-wait__q { font-family: var(--font-display); font-weight: var(--weight-heading); font-size: var(--text-hero); line-height: .9; color: var(--highlight); }
+.fact-wait h2 { font-size: var(--text-h2-page); line-height: 1.1; }
+.fact-wait p { color: var(--text-body); max-inline-size: 23.75rem; }
+.fact-wait[hidden], .fact-card[hidden] { display: none; }
+
+.fact-card { overflow: hidden; border-radius: var(--fact-radius); box-shadow: var(--elevation-float); }
+.fact-card.is-new { animation: fact-pop var(--motion-pop) var(--motion-pop-ease) both; }
+@keyframes fact-pop { from { opacity: 0; transform: translateY(24px) scale(.94) rotate(-2deg); } to { opacity: 1; transform: none; } }
+.fact-card .photo { block-size: 220px; }
+.topic-chip {
+  position: absolute; inset-inline-start: 14px; inset-block-start: 14px; z-index: 2;
+  display: inline-flex; align-items: center; min-block-size: 30px; padding-inline: var(--gap-related);
+  border-radius: var(--radius-chip);
+  font-family: var(--font-mono); font-size: var(--text-micro); font-weight: var(--weight-strong);
+  letter-spacing: var(--tracking-label); text-transform: uppercase;
+}
+.topic--cities  { background: var(--topic-cities-bg);  color: var(--topic-cities-text); }
+.topic--nature  { background: var(--topic-nature-bg);  color: var(--topic-nature-text); }
+.topic--food    { background: var(--topic-food-bg);    color: var(--topic-food-text); }
+.topic--culture { background: var(--topic-culture-bg); color: var(--topic-culture-text); }
+.fact-card .photo__label { inset-inline: auto var(--gap-related); }
+.fact-card__body { padding: var(--pad-box) 28px 26px; }
+.fact-card__title { font-size: var(--text-fact); line-height: 1.1; margin-block: 14px 10px; }
+.fact-card__text { font-size: var(--text-lede); line-height: var(--leading-read); color: var(--text-body); }
+.fact-card__actions { display: grid; gap: 10px; margin-block-start: 22px; }
+.fact-card__toast { margin-block-start: var(--gap-related); font-size: var(--text-small); font-weight: var(--weight-label); color: var(--status-good); }
+
+/* Confetti */
+.confetti { position: absolute; inset: 0; z-index: 5; overflow: hidden; pointer-events: none; }
+.confetti i { position: absolute; inset-block-start: -16px; inline-size: 9px; block-size: 14px; border-radius: var(--radius-flag); opacity: 0; animation: confetti-fall 2.2s cubic-bezier(.2, .6, .35, 1) forwards; }
+@keyframes confetti-fall { 0% { opacity: 1; transform: translate(0, 0) rotate(0); } 85% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx), 640px) rotate(var(--rot)); } }
+
+@media (max-width: 1080px) {
+  .game { grid-template-columns: minmax(0, 1fr); gap: var(--gap-group); padding: var(--gap-wide) var(--gap-block); }
+  .wheel { max-inline-size: 400px; }
+}
+@media (max-width: 760px) {
+  .topics { margin-block-start: var(--gap-stack); }
+  .game { margin: var(--pad-box) calc(-1 * var(--gutter)) 0; padding: 36px var(--gutter) var(--gap-block); border-radius: 0; gap: 28px; }
+  .wheel { max-inline-size: 310px; }
+  .wheel__hub { inline-size: 80px; block-size: 80px; margin: -40px 0 0 -40px; font-size: var(--text-label); box-shadow: 0 0 0 5px var(--surface-page); }
+  .fact-wait { padding: 28px 22px; }
+  .fact-card .photo { block-size: 190px; }
+  .fact-card__body { padding: var(--pad-control-x) 18px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fact-card.is-new { animation: none; }
+  .confetti { display: none; }
+  .wheel__hub { transition: none; }
+}

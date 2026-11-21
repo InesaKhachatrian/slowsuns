@@ -1,0 +1,56 @@
+/* label.css · country label, filter chips, month pills, stop chips, Checked line.
+   Country label: <span class="label"><svg class="flag">…</svg>Greece</span> */
+
+.label {
+  display: inline-flex; align-items: center; gap: var(--gap-inline);
+  flex: none; white-space: nowrap;
+  padding: var(--gap-hair) var(--gap-related) var(--gap-hair) var(--gap-inline);
+  min-block-size: 32px;
+  border-radius: var(--label-radius);
+  background: var(--label-bg); color: var(--label-text);
+  font-size: var(--text-label); font-weight: var(--weight-strong);
+  letter-spacing: var(--tracking-caption);
+  line-height: 1.6;
+}
+.label--plain { background: transparent; padding-inline: 0; color: inherit; }
+
+/* Filter chips (Places): chosen = ink fill */
+.chip {
+  display: inline-flex; align-items: center; flex: none;
+  min-block-size: var(--target-min); padding-inline: var(--pad-control-x);
+  border: 0; border-radius: var(--radius-round);
+  background: var(--surface-page); color: var(--text-primary);
+  box-shadow: inset 0 0 0 1px var(--chip-line);
+  font-size: var(--text-ui); font-weight: var(--weight-label);
+}
+.chip:hover { --chip-line: var(--border-strong); }
+.chip[aria-pressed="true"] { background: var(--chip-on-bg); color: var(--chip-on-text); box-shadow: none; }
+
+/* Month pills (navy map): chosen = white */
+.month-pill {
+  flex: none; min-block-size: var(--target-min); padding-inline: var(--pad-control-x);
+  border: 0; border-radius: var(--radius-round);
+  background: transparent; color: var(--text-muted);
+  box-shadow: inset 0 0 0 1px var(--border-control);
+  font-size: var(--text-ui); font-weight: var(--weight-label);
+}
+.month-pill:hover { color: var(--text-primary); --border-control: var(--text-muted); }
+.month-pill[aria-pressed="true"] { background: var(--month-on-bg); color: var(--month-on-text); box-shadow: none; }
+
+/* Stop chips (route) */
+.stops { display: flex; flex-wrap: wrap; gap: var(--gap-inline); }
+.stops li {
+  display: inline-flex; align-items: center; gap: var(--gap-inline);
+  padding: var(--gap-hair) var(--gap-related); border-radius: var(--radius-chip);
+  background: var(--surface-sunken); font-size: var(--text-small); font-weight: var(--weight-label);
+}
+.stops li::before { content: ""; inline-size: 6px; block-size: 6px; border-radius: var(--radius-round); background: var(--stop-dot); }
+
+/* Meta row with icons: [days] days · from €… · Checked … */
+.meta { display: flex; flex-wrap: wrap; gap: var(--gap-related) var(--pad-control-x); font-size: var(--text-ui); font-weight: var(--weight-medium); }
+.meta > span { display: inline-flex; align-items: center; gap: var(--gap-hair); }
+.meta .icon { --icon-size: 18px; }
+
+/* Checked line */
+.checked { display: inline-flex; align-items: center; gap: var(--gap-hair); font-size: var(--text-small); color: var(--chip-text); }
+.checked .icon { --icon-size: 16px; }

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Did you know? · Slowsuns</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="components/index.css">
+<script src="components/site.js" defer></script>
+</head>
+<body data-en-only>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+    <a class="logo" href="index.html"><svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><rect class="logo__tile" width="32" height="32" rx="9"/><path class="logo__road" d="M7 32 C8 24 21 23.5 20.5 16.5 C20.1 12.5 15.6 11.6 16.2 8.2 L17.4 8.2 C17 11.3 22.8 12.4 23.4 16.6 C24.3 23.8 13.5 25 15.5 32 Z"/><path class="logo__lane" d="M11.4 30.5 C12.4 25 21.6 23.8 21.9 17 C22 13.5 17.6 12 16.8 9.4" fill="none" stroke-width="1" stroke-dasharray="1.6 1.6"/><circle class="logo__sun" cx="23.5" cy="8.5" r="3.2"/></svg>Slowsuns</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="places.html" data-hy="Վայրեր">Places</a>
+      <a href="facts.html" aria-current="page" data-hy="Գիտե՞իր">Did you know?</a>
+    </nav>
+    <div class="site-header__end">
+      <button class="lang-switch" type="button" data-toggle-lang aria-label="Switch language">EN · ՀՅ</button>
+      <button class="btn-icon menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu-sheet" data-menu-open><span class="icon icon--menu icon--24" aria-hidden="true"></span></button>
+    </div>
+  </header>
+<div class="offline-bar" data-offline-bar role="status" hidden><p>You're offline. Photos and the map will load when you're back online.</p><button type="button">Try again</button></div>
+<div class="wrap"><div class="lang-note" role="note" hidden><span class="icon icon--info" aria-hidden="true"></span><div><p lang="hy">Այս էջը դեռ հայերեն չկա։ Ստորև՝ անգլերեն տարբերակը։</p><p class="lang-note__en">This page isn't in Armenian yet. Here is the English version.</p></div></div></div>
+<div class="menu-sheet" id="menu-sheet" hidden>
+  <div class="menu-sheet__top"><a class="logo" href="index.html"><svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><rect class="logo__tile" width="32" height="32" rx="9"/><path class="logo__road" d="M7 32 C8 24 21 23.5 20.5 16.5 C20.1 12.5 15.6 11.6 16.2 8.2 L17.4 8.2 C17 11.3 22.8 12.4 23.4 16.6 C24.3 23.8 13.5 25 15.5 32 Z"/><path class="logo__lane" d="M11.4 30.5 C12.4 25 21.6 23.8 21.9 17 C22 13.5 17.6 12 16.8 9.4" fill="none" stroke-width="1" stroke-dasharray="1.6 1.6"/><circle class="logo__sun" cx="23.5" cy="8.5" r="3.2"/></svg>Slowsuns</a><button class="btn-icon" type="button" aria-label="Close menu" data-menu-close><span class="icon icon--close icon--24" aria-hidden="true"></span></button></div>
+  <nav aria-label="Main"><a href="places.html" data-hy="Վայրեր">Places</a>
+      <a href="facts.html" aria-current="page" data-hy="Գիտե՞իր">Did you know?</a></nav>
+  <button class="lang-switch" type="button" data-toggle-lang aria-label="Switch language">EN · ՀՅ</button>
+</div>
+
+<main id="main" class="wrap page-top page-end page-head">
+  <h1 class="t-page">Did you know?</h1>
+  <p class="t-lede">Spin the wheel once a day and get a random fact about the world: cities, nature, food and traditions.</p>
+  <ul class="topics" aria-label="Topics on the wheel"><li><img src="assets/wheel/cities.svg" alt="">Countries &amp; cities</li><li><img src="assets/wheel/nature.svg" alt="">Nature &amp; sky</li><li><img src="assets/wheel/food.svg" alt="">Food &amp; drinks</li><li><img src="assets/wheel/culture.svg" alt="">Culture &amp; traditions</li></ul>
+
+  <section class="game" data-theme="navy" data-game data-daily-limit="true" aria-label="Spin the wheel">
+    <div class="game__wheelcol">
+      <div class="wheel">
+        <svg class="wheel__pointer" viewBox="0 0 40 48" aria-hidden="true"><path fill="currentColor" d="M11 4H29Q36 4 36 11V15Q36 19 33 22L23 34Q20 37.5 17 34L7 22Q4 19 4 15V11Q4 4 11 4Z"/></svg>
+        <img class="wheel__disc" src="assets/wheel/wheel.svg" alt="">
+        <button type="button" class="wheel__hub" aria-label="Spin the wheel">Spin</button>
+      </div>
+      <p class="game__status" aria-live="polite">One spin a day. Make it count.</p>
+      <button type="button" class="sound" aria-pressed="false"><span class="icon icon--sound-off" aria-hidden="true"></span>Sound</button>
+    </div>
+    <div class="game__factcol">
+      <div class="fact-wait">
+        <span class="fact-wait__q" aria-hidden="true">?</span>
+        <h2>Today's fact is hidden here</h2>
+        <p>Tap Spin. The wheel picks a topic, then you get one fact to read and share. One spin a day.</p>
+      </div>
+      <article class="fact-card" data-theme="light" aria-live="polite" hidden>
+        <figure class="photo"><img src="" alt=""><span class="topic-chip"></span><span class="photo__label"></span></figure>
+        <div class="fact-card__body">
+          <span class="label"><span class="fact-card__flag"></span><span class="fact-card__place"></span></span>
+          <h2 class="fact-card__title"></h2>
+          <p class="fact-card__text"></p>
+          <div class="fact-card__actions">
+            <a class="btn btn--small btn--solid fact-card__guide" href="#"><span>Read my guide</span><span class="icon icon--arrow-right" aria-hidden="true"></span></a>
+            <button type="button" class="btn btn--small btn--ghost fact-card__share"><span class="icon icon--share" aria-hidden="true"></span>Share this fact</button>
+          </div>
+          <p class="fact-card__toast" role="status" hidden></p>
+        </div>
+      </article>
+    </div>
+    <script type="application/json" id="fact-data">[{"topic": 0, "place": "Italy", "flag": "<img class=\"flag\" src=\"assets/flags/it.svg\" alt=\"\">", "title": "A city on 100+ islands", "text": "Venice is built on more than 100 small islands in a lagoon, linked by over 400 bridges.", "img": "assets/photos/venice.svg"}, {"topic": 0, "place": "Czech Republic", "flag": "<img class=\"flag\" src=\"assets/flags/cz.svg\" alt=\"\">", "title": "A castle the size of a town", "text": "Prague Castle is one of the largest ancient castle complexes in the world, covering about 70,000 square metres.", "img": "assets/photos/prague.jpg", "guide": "prague.html", "guideName": "Prague"}, {"topic": 0, "place": "Greece", "flag": "<img class=\"flag\" src=\"assets/flags/gr.svg\" alt=\"\">", "title": "A wonder that stood 54 years", "text": "The Colossus of Rhodes, one of the Seven Wonders of the Ancient World, stood for only about 54 years before an earthquake brought it down in 226 BC.", "img": "assets/photos/rhodes.jpg", "guide": "rhodes.html", "guideName": "Rhodes"}, {"topic": 1, "place": "Norway", "flag": "<img class=\"flag\" src=\"assets/flags/no.svg\" alt=\"\">", "title": "Why the sky turns green", "text": "The northern lights glow when particles from the Sun hit gases high in our atmosphere. The most common green colour comes from oxygen.", "img": "assets/photos/norway.svg"}, {"topic": 1, "place": "Sri Lanka", "flag": "<img class=\"flag\" src=\"assets/flags/lk.svg\" alt=\"\">", "title": "A sunrise climb in the dark", "text": "Pilgrims climb Adam’s Peak in Sri Lanka through the night to reach the top at sunrise. A footprint-shaped mark at the summit is sacred to several religions.", "img": "assets/photos/sri-lanka.jpg", "guide": "sri-lanka.html", "guideName": "Sri Lanka"}, {"topic": 1, "place": "Venezuela", "flag": "<img class=\"flag\" src=\"assets/flags/ve.svg\" alt=\"\">", "title": "The tallest waterfall on Earth", "text": "Angel Falls in Venezuela drops 979 metres, making it the highest uninterrupted waterfall in the world.", "img": "assets/photos/falls.svg"}, {"topic": 2, "place": "Sri Lanka", "flag": "<img class=\"flag\" src=\"assets/flags/lk.svg\" alt=\"\">", "title": "Ceylon tea kept its old name", "text": "Sri Lanka is one of the world’s biggest tea exporters, and its tea is still sold as “Ceylon”, the island’s name until 1972.", "img": "assets/photos/sri-lanka.jpg", "guide": "sri-lanka.html", "guideName": "Sri Lanka"}, {"topic": 2, "place": "Peru", "flag": "<img class=\"flag\" src=\"assets/flags/pe.svg\" alt=\"\">", "title": "Thousands of potatoes", "text": "Peru grows more than 3,000 varieties of potato. The potato was first farmed in the Andes thousands of years ago.", "img": "assets/photos/peru.svg"}, {"topic": 2, "place": "Greece", "flag": "<img class=\"flag\" src=\"assets/flags/gr.svg\" alt=\"\">", "title": "Real feta comes from Greece", "text": "Since 2002, only cheese made in parts of Greece from sheep’s milk, or sheep’s milk mixed with a little goat’s milk, can be sold as feta in the EU.", "img": "assets/photos/feta.svg"}, {"topic": 3, "place": "Croatia", "flag": "<img class=\"flag\" src=\"assets/flags/hr.svg\" alt=\"\">", "title": "The necktie is Croatian", "text": "The necktie comes from the scarves of Croatian soldiers in 17th-century France. The word “cravat” comes from the word for a Croat.", "img": "assets/photos/split.jpg", "guide": "split.html", "guideName": "Split"}, {"topic": 3, "place": "Spain", "flag": "<img class=\"flag\" src=\"assets/flags/es.svg\" alt=\"\">", "title": "A town-wide tomato fight", "text": "Every year on the last Wednesday of August, the town of Buñol in Spain holds La Tomatina, where people throw tomatoes at each other.", "img": "assets/photos/tomatina.svg"}]</script>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__in">
+    <a class="logo" href="index.html"><svg class="logo__mark" viewBox="0 0 32 32" aria-hidden="true"><rect class="logo__tile" width="32" height="32" rx="9"/><path class="logo__road" d="M7 32 C8 24 21 23.5 20.5 16.5 C20.1 12.5 15.6 11.6 16.2 8.2 L17.4 8.2 C17 11.3 22.8 12.4 23.4 16.6 C24.3 23.8 13.5 25 15.5 32 Z"/><path class="logo__lane" d="M11.4 30.5 C12.4 25 21.6 23.8 21.9 17 C22 13.5 17.6 12 16.8 9.4" fill="none" stroke-width="1" stroke-dasharray="1.6 1.6"/><circle class="logo__sun" cx="23.5" cy="8.5" r="3.2"/></svg>Slowsuns</a>
+    <nav aria-label="Footer"><a href="places.html">Places</a><a href="facts.html">Did you know?</a></nav>
+    <span>© 2026 Slowsuns</span>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,81 @@
+/* place-panel.css · home "Recommended places": full-width cards that stack on scroll.
+   Left: label, name, description, meta, Explore. Right: the photo cut in the country's shape.
+   site.js adds: stacking (scale, radius, dim), photo parallax, and the Explore reveal
+   (the silhouette swells until the whole photo shows). */
+
+.places-intro { padding-block: var(--gap-section) var(--gap-intro); }
+.places-intro p:last-child { margin-block-start: var(--gap-related); color: var(--text-muted); max-inline-size: 27.5rem; }
+
+.place-stack { position: relative; padding-block-end: var(--gap-section); }
+
+.place-panel {
+  position: sticky; inset-block-start: var(--panel-top);
+  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); align-items: center;
+  block-size: min(calc(100vh - 2 * var(--panel-top)), var(--panel-h));
+  margin: 0 var(--gutter) var(--panel-top);
+  border-radius: var(--panel-radius);
+  overflow: hidden; isolation: isolate;
+  background: var(--panel-tint, var(--surface-sunken));
+  color: var(--text-primary);
+  transform-origin: 50% 0;
+  will-change: transform;
+}
+.place-panel__text {
+  position: relative; z-index: 3;
+  display: flex; flex-direction: column; align-items: flex-start; gap: var(--pad-control-x);
+  padding: var(--gap-page-top) var(--pad-box) var(--gap-page-top) var(--pad-panel);
+  max-inline-size: 37.5rem;
+}
+.place-panel__text .label { color: var(--text-muted); }
+.place-panel__name {
+  font-family: var(--font-display); font-weight: var(--weight-place);
+  font-size: var(--text-place); line-height: var(--leading-title);
+}
+.place-panel__desc { font-size: var(--text-lead); line-height: var(--leading-read); color: var(--text-body); max-inline-size: 29.5rem; }
+.place-panel__text, .place-panel__text * { transition: color var(--motion-base) var(--motion-ease); }
+
+.place-panel__pic { position: relative; z-index: 1; block-size: 100%; display: flex; align-items: center; justify-content: center; padding: var(--gap-inline) var(--gap-inline) var(--gap-inline) 0; }
+.place-panel__shape {
+  position: relative; flex: none;
+  inline-size: min(100%, 50rem); aspect-ratio: 1;
+  overflow: hidden;
+  -webkit-mask: var(--shape) center / contain no-repeat;
+  mask: var(--shape) center / contain no-repeat;
+}
+.place-panel__shape--tall { inline-size: auto; block-size: 100%; max-inline-size: 100%; }
+.place-panel__shape img { position: absolute; inset-inline: 0; inset-block-start: -12%; inline-size: 100%; block-size: 124%; object-fit: cover; will-change: transform; }
+
+/* Reveal layer (built by site.js) */
+.place-panel__reveal { position: absolute; inset: 0; z-index: 2; inline-size: 100%; block-size: 100%; pointer-events: none; }
+.place-panel__dim { position: absolute; inset: 0; z-index: 4; background: var(--panel-dim); opacity: 0; pointer-events: none; }
+
+.place-panel.is-open .place-panel__text { color: var(--text-on-photo); --text-muted: var(--text-on-photo); --text-body: var(--text-on-photo-soft); --btn-outline-line: var(--text-on-photo); --btn-outline-text: var(--text-on-photo); --btn-outline-hover: var(--line-on-photo); }
+.place-panel.is-open .place-panel__text * { transition-delay: 0.4s; }
+.place-panel.is-open .place-panel__shape { visibility: hidden; }
+
+/* Card tints, one per place (picked from the photo) */
+.tint--split    { --panel-tint: var(--tint-card-split); }
+.tint--srilanka { --panel-tint: var(--tint-card-srilanka); }
+.tint--rhodes   { --panel-tint: var(--tint-card-rhodes); }
+.tint--prague   { --panel-tint: var(--tint-card-prague); }
+
+@media (max-width: 1080px) {
+  .place-panel__text { padding: var(--gap-group) var(--gap-stack) var(--gap-group) var(--gap-wide); }
+}
+@media (max-width: 760px) {
+  .place-panel {
+    grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); align-items: start;
+    block-size: min(calc(100svh - 2 * var(--gap-stack)), 760px);
+    margin-inline: var(--gutter);
+    --panel-top: var(--gap-stack);
+  }
+  .place-panel__text { padding: var(--gap-block) var(--pad-control-x) 0; gap: var(--gap-related); }
+  .place-panel__desc { font-size: var(--text-lede); }
+  .place-panel__text .meta { font-size: var(--text-label); }
+  .place-panel__pic { padding: 0 var(--gap-inline) var(--gap-inline); }
+  .place-panel__shape, .place-panel__shape--tall { inline-size: 100%; block-size: auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .place-panel, .place-panel__shape img { transform: none !important; }
+  .place-panel__dim { opacity: 0 !important; }
+}

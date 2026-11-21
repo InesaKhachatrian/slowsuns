@@ -1,0 +1,5 @@
+Playfair Display (Claus Eggers Sørensen), Urbanist (Corey Hu), Space Mono (Colophon Foundry),
+Noto Sans Armenian and Noto Serif Armenian (Google) are licensed under the SIL Open Font License 1.1:
+https://openfontlicense.org
+Files from Fontsource (fontsource.org): latin subsets for Playfair Display, Urbanist and Space Mono,
+armenian subsets for the Noto fonts.

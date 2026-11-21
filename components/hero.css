@@ -1,0 +1,30 @@
+/* hero.css · home hero. Full-bleed moody photo, layered dark scrim, text left, no cards.
+   <section class="hero on-photo"> header · .hero__photo · .hero__text </section> */
+
+.hero {
+  position: relative; isolation: isolate; overflow: hidden;
+  block-size: var(--hero-h);
+  background: var(--hero-ground);
+  color: var(--text-on-photo);
+  --highlight: var(--text-on-photo);
+}
+.hero__photo { position: absolute; inset: 0; z-index: -2; }
+.hero__photo img { inline-size: 100%; block-size: 100%; object-fit: cover; object-position: 50% 62%; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--hero-scrim); }
+.hero__text {
+  position: absolute; inset-inline-start: var(--hero-inset); inset-block-start: var(--hero-top);
+  max-inline-size: 37.5rem;
+}
+.hero__title { font-size: var(--text-hero); line-height: var(--leading-display); margin-block-end: var(--pad-box); }
+:lang(hy) .hero__title { font-size: var(--text-hero-hy); }
+.hero__sub { font-size: var(--text-lede); color: var(--text-on-photo-soft); max-inline-size: 27.5rem; margin-block-end: var(--gap-group); }
+.hero .photo__label { inset-inline-start: var(--pad-box); inset-block-end: var(--gap-stack); }
+
+@media (max-width: 1080px) {
+  .hero__text { inset-inline-start: var(--gap-wide); }
+}
+@media (max-width: 760px) {
+  :root { --hero-h: 780px; }
+  .hero__text { inset-inline: var(--gutter); inset-block: auto 150px; }
+  .hero__sub { margin-block-end: var(--pad-box); }
+}

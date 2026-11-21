@@ -1,0 +1,69 @@
+/* button.css · four kinds of button. One main action per area.
+   .btn--primary    white, mono uppercase, no icon. Only on photos and navy.
+   .btn--outline    transparent, 1.5 px outline, mono uppercase. Explore, "All guides".
+   .btn--small      sans 15/700, 8 px corners. --solid (one main action in a card) or --ghost.
+   .btn--instagram  white, square profile photo, mono handle, ↗. Only in the Instagram band. */
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--btn-gap);
+  min-block-size: var(--btn-height);
+  border: 0; border-radius: var(--btn-radius);
+  text-decoration: none; white-space: nowrap;
+  cursor: pointer;
+  transition: background-color var(--motion-base) var(--motion-ease), color var(--motion-base) var(--motion-ease), border-color var(--motion-base) var(--motion-ease);
+}
+.btn--mono {
+  font-size: var(--btn-mono-size);
+  font-weight: var(--weight-strong);
+  letter-spacing: var(--tracking-btn);
+}
+
+/* Primary: white on photo or navy */
+.btn--primary {
+  min-block-size: calc(var(--btn-height) + var(--gap-hair));
+  padding-inline: var(--pad-control-x);
+  background: var(--btn-primary-bg); color: var(--btn-primary-text);
+}
+.btn--primary:hover { background: var(--btn-primary-hover); }
+
+/* Outline */
+.btn--outline {
+  padding-inline: var(--pad-box);
+  background: transparent; color: var(--btn-outline-text);
+  box-shadow: inset 0 0 0 1.5px var(--btn-outline-line);
+}
+.btn--outline:hover { background: var(--btn-outline-hover); }
+.on-photo .btn--outline, [data-theme="navy"] .btn--outline { --btn-outline-line: var(--text-on-photo); --btn-outline-text: var(--text-on-photo); --btn-outline-hover: var(--line-on-photo); }
+
+/* Small: sans, inside cards and rows */
+.btn--small {
+  padding-inline: var(--pad-control-x);
+  border-radius: var(--btn-small-radius);
+  font-size: var(--text-ui); font-weight: var(--weight-strong);
+}
+.btn--solid { background: var(--btn-solid-bg); color: var(--btn-solid-text); }
+.btn--solid:hover { background: var(--btn-solid-hover); }
+.btn--ghost { background: var(--surface-page); color: var(--text-primary); box-shadow: inset 0 0 0 1px var(--btn-ghost-line); }
+.btn--ghost:hover { --btn-ghost-line: var(--btn-ghost-hover); }
+.btn--block { inline-size: 100%; }
+.btn .icon { --icon-size: 18px; }
+
+/* Instagram */
+.btn--instagram {
+  inline-size: 100%; justify-content: flex-start; gap: var(--gap-stack);
+  min-block-size: calc(var(--target-min) + var(--gap-related));
+  padding: var(--gap-hair) var(--gap-related) var(--gap-hair) var(--gap-hair);
+  border-radius: var(--radius-btn);
+  background: var(--ig-btn-bg); color: var(--btn-primary-text);
+  letter-spacing: var(--tracking-caption);
+}
+.btn--instagram:hover { background: var(--ig-btn-hover); }
+.btn--instagram img { inline-size: var(--target-min); block-size: var(--target-min); border-radius: var(--radius-btn); object-fit: cover; flex: none; }
+.btn--instagram .icon { margin-inline-start: auto; }
+
+/* Icon-only round/square control (zoom, menu) */
+.btn-icon {
+  display: inline-grid; place-items: center; flex: none;
+  inline-size: var(--target-min); block-size: var(--target-min);
+  padding: 0; border: 0; background: transparent; color: inherit;
+}

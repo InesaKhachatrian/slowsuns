@@ -1,0 +1,545 @@
+/* =====================================================================
+   tokens.css · Layer 1 of the design system
+   Source of truth: DESIGN.md Version 4B (Nov 16, 2026)
+   Canvas: "Home page design (Version 4)", row B (Home, Places,
+   Destination, Did you know?).
+
+   Three layers, top to bottom:
+     1. PRIMITIVE  raw values with no meaning       (--navy-900, --space-6)
+     2. SEMANTIC   what a value is for              (--surface-page, --gap-stack)
+     3. COMPONENT  one component's decisions        (--btn-primary-bg)
+
+   Rules
+   - Hex / rgba values appear ONLY in the primitive layer.
+   - Semantic tokens point to primitives.
+   - Component tokens point to semantic tokens (never to primitives).
+   - Files in components/ use component and semantic tokens only.
+   - Breakpoints (1080 / 760 px) are written as numbers in @media
+     because CSS variables can't be used there.
+   [A] = assumed by Claude, not yet decided by Inesa.
+   ===================================================================== */
+
+
+/* ---------------------------------------------------------------------
+   1. PRIMITIVE TOKENS
+   --------------------------------------------------------------------- */
+:root {
+  /* Neutrals */
+  --white:      #FFFFFF;
+  --cream-100:  #F4F2EC;   /* hover on white buttons */
+  --grey-100:   #E3E6EA;   /* hairlines [A: unified, home used #DDD9CE] */
+  --grey-200:   #D3D9DF;   /* photo loading ground */
+  --grey-300:   #C9CFD6;   /* control outlines */
+  --grey-600:   #5A6566;   /* secondary text, 5.9:1 on white */
+  --ink-700:    #3E4849;   /* running text, 9.6:1 */
+  --ink-800:    #2A3436;   /* solid button hover */
+  --ink-900:    #121A1C;   /* text, solid buttons, 17.6:1 */
+
+  /* Navy (map, More guides, game band) */
+  --navy-950:   #0A1019;   /* sea */
+  --navy-900:   #0E1622;   /* section ground */
+  --navy-800:   #18222F;   /* raised on navy */
+  --navy-700:   #222D3B;   /* land */
+  --navy-600:   #22344A;   /* hub hover, cities topic */
+  --navy-500:   #3A4656;   /* lines on navy only */
+  --slate-200:  #B9C4C9;   /* text on navy, 10:1 */
+  --slate-250:  #A7B4BC;   /* card meta on navy */
+  --slate-300:  #9FB0B5;   /* notes on navy, 8.3:1 */
+  --slate-400:  #8496A0;   /* places not visited, 5.9:1 */
+
+  /* Accents */
+  --gold-400:   #E9B44C;   /* map dots, highlight on navy, 9.9:1 on navy */
+  --orange-500: #E2622D;   /* focus ring, small accents */
+  --orange-700: #B8461A;   /* eyebrows on white, 5.1:1 */
+  --blue-600:   #2F6690;   /* "Nature & sky" topic */
+  --green-700:  #2F6B4F;   /* tips, "Copied" (text and icons only) */
+  --mint-300:   #5BE3A6;   /* confetti only */
+
+  /* Place-card tints (home) */
+  --tint-split:    #E7EEF1;
+  --tint-srilanka: #E8EEE5;
+  --tint-rhodes:   #F2EEE7;
+  --tint-prague:   #EFEBE8;
+
+  /* Island map (destination) */
+  --sea-200:    #DDE8EC;
+  --coast-300:  #B7C2CC;
+  --map-note-600: #4D5B60;
+
+  /* Transparent */
+  --ink-5:      rgba(14, 22, 34, 0.05);    /* tint for labels, boxes */
+  --ink-14:     rgba(18, 26, 28, 0.14);    /* flag edge */
+  --ink-25:     rgba(14, 22, 34, 0.25);
+  --red-5:      rgba(255, 0, 0, 0.05);     /* mistakes box */
+  --white-10:   rgba(255, 255, 255, 0.10);
+  --white-12:   rgba(255, 255, 255, 0.12);
+  --white-28:   rgba(255, 255, 255, 0.28);
+  --white-40:   rgba(255, 255, 255, 0.40);
+  --white-88:   rgba(255, 255, 255, 0.88);
+  --white-92:   rgba(255, 255, 255, 0.92);
+  --shade-0:    rgba(8, 16, 18, 0);
+  --shade-12:   rgba(8, 16, 18, 0.12);
+  --shade-25:   rgba(8, 16, 18, 0.25);
+  --shade-30:   rgba(10, 14, 14, 0.30);
+  --shade-45:   rgba(8, 16, 18, 0.45);
+  --shade-50:   rgba(8, 16, 18, 0.50);
+  --shade-55:   rgba(8, 16, 18, 0.55);
+  --shade-60:   rgba(8, 16, 18, 0.60);
+  --shade-75:   rgba(8, 12, 14, 0.75);
+  --shade-80:   rgba(8, 16, 18, 0.80);
+  --panel-90:   rgba(12, 22, 20, 0.90);    /* Instagram button panel */
+  --dim-1:      rgba(11, 18, 20, 1);       /* stacked card dim (opacity set by JS) */
+  --navy-88:    rgba(10, 16, 25, 0.88);    /* zoom buttons */
+  --gold-22:    rgba(233, 180, 76, 0.22);
+  --gold-35:    rgba(233, 180, 76, 0.35);
+  --gold-55:    rgba(233, 180, 76, 0.55);
+  --black-40:   rgba(0, 0, 0, 0.40);
+  --black-45:   rgba(0, 0, 0, 0.45);
+
+  /* Type */
+  --font-serif-latin: "Playfair Display";
+  --font-sans-latin:  "Urbanist";
+  --font-mono-latin:  "Space Mono";
+  --font-serif-arm:   "Noto Serif Armenian";   /* [A] partner, Q17 */
+  --font-sans-arm:    "Noto Sans Armenian";    /* [A] partner, Q17 */
+  --weight-400: 400;
+  --weight-500: 500;
+  --weight-600: 600;
+  --weight-700: 700;
+  --size-11: 0.6875rem;
+  --size-12: 0.75rem;
+  --size-13: 0.8125rem;
+  --size-14: 0.875rem;
+  --size-15: 0.9375rem;
+  --size-16: 1rem;
+  --size-17: 1.0625rem;
+  --size-18: 1.125rem;
+  --size-20: 1.25rem;
+  --size-24: 1.5rem;
+  --size-26: 1.625rem;
+  --size-28: 1.75rem;
+  --size-30: 1.875rem;
+  --size-34: 2.125rem;
+  --size-36: 2.25rem;
+  --size-40: 2.5rem;
+  --size-44: 2.75rem;
+  --size-48: 3rem;
+  --size-52: 3.25rem;
+  --size-56: 3.5rem;
+  --size-64: 4rem;
+  --size-68: 4.25rem;
+  --size-72: 4.5rem;
+  --size-88: 5.5rem;
+  --leading-100: 1;
+  --leading-104: 1.04;
+  --leading-108: 1.08;
+  --leading-120: 1.2;
+  --leading-155: 1.55;
+  --leading-160: 1.6;
+  --track-6:  0.06em;
+  --track-10: 0.1em;
+  --track-12: 0.12em;
+  --track-14: 0.14em;
+  --track-16: 0.16em;
+
+  /* Space: 2 · 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 56 · 64 · 72 · 80 · 96 · 120 */
+  --space-0:  2px;
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-4b: 1.25rem;
+  --space-5:  1.5rem;
+  --space-6:  2rem;
+  --space-6b: 2.5rem;
+  --space-7:  3rem;
+  --space-7b: 3.5rem;
+  --space-8:  4rem;
+  --space-8b: 4.5rem;
+  --space-9:  5rem;
+  --space-10: 6rem;
+  --space-11: 7.5rem;
+
+  /* Radius */
+  --radius-2:  2px;
+  --radius-4:  4px;
+  --radius-6:  6px;
+  --radius-8:  8px;
+  --radius-12: 12px;
+  --radius-14: 14px;
+  --radius-16: 16px;
+  --radius-18: 18px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-pill: 999px;
+
+  /* Shadow */
+  --shadow-pin:   0 12px 28px var(--black-45);
+  --shadow-card:  0 24px 60px var(--black-40);
+  --shadow-ring:  0 0 0 1px var(--ink-14);
+  --shadow-sticky: 0 6px 12px -10px var(--ink-25);
+
+  /* Motion */
+  --ease-calm:  cubic-bezier(.22, .61, .36, 1);
+  --ease-wheel: cubic-bezier(.12, .7, .1, 1);
+  --ease-pop:   cubic-bezier(.2, .9, .3, 1.2);
+  --dur-150:  150ms;
+  --dur-250:  250ms;
+  --dur-350:  350ms;
+  --dur-600:  600ms;
+  --dur-700:  700ms;
+  --dur-900:  900ms;
+
+  /* Size */
+  --tap-44:     44px;
+  --tap-48:     48px;
+  --page-1280:  80rem;
+  --read-680:   42.5rem;
+}
+
+
+/* ---------------------------------------------------------------------
+   2. SEMANTIC TOKENS
+   Theme is set per section: data-theme="light" (default) | "navy".
+   Photos carry their own dark layer. No green, cream or tinted sections.
+   --------------------------------------------------------------------- */
+
+/* 2a. Colour, light theme (every page) */
+:root,
+[data-theme="light"] {
+  --surface-page:   var(--white);
+  --surface-raised: var(--white);
+  --surface-sunken: var(--ink-5);        /* tint: labels, chips, fact boxes */
+  --surface-photo:  var(--grey-200);     /* while a photo loads */
+  --text-primary:   var(--ink-900);
+  --text-body:      var(--ink-700);
+  --text-muted:     var(--grey-600);
+  --text-on-photo:  var(--white);
+  --text-on-photo-soft: var(--white-88);
+  --border-subtle:  var(--grey-100);
+  --border-control: var(--grey-300);
+  --border-strong:  var(--ink-900);
+  --action-solid:       var(--ink-900);
+  --action-solid-hover: var(--ink-800);
+  --action-solid-text:  var(--white);
+  --action-on-photo:      var(--white);
+  --action-on-photo-hover: var(--cream-100);
+  --action-on-photo-text: var(--ink-900);
+  --action-primary:   var(--ink-900);  /* kept for the docs site */
+  --link:           var(--ink-900);
+  --eyebrow:        var(--orange-700);
+  --accent:         var(--orange-500);
+  --accent-glow:    var(--gold-35);
+  --highlight:      var(--ink-900);    /* <em> stays ink on white, italic only */
+  --tag-bg:         var(--ink-5);
+  --tag-text:       var(--ink-700);
+  --status-checked: var(--green-700);
+  --status-good:    var(--green-700);
+  --status-bad:     var(--orange-700);
+  --surface-bad:    var(--red-5);
+  --focus-ring:     var(--orange-500);
+  --scrim-strong:   var(--shade-60);
+  --scrim-soft:     var(--shade-25);
+  --scrim-clear:    var(--shade-0);
+  --line-on-photo:  var(--white-40);
+  --map-highlight:  var(--gold-400);
+  --elevation-float: var(--shadow-card);
+  --elevation-pin:   var(--shadow-pin);
+  --elevation-sticky: var(--shadow-sticky);
+  color-scheme: light;
+}
+
+/* 2b. Colour, navy theme (home map, More guides, game band) */
+[data-theme="navy"] {
+  --surface-page:   var(--navy-900);
+  --surface-raised: var(--navy-800);
+  --surface-sunken: var(--navy-950);
+  --text-primary:   var(--white);
+  --text-body:      var(--slate-200);
+  --text-muted:     var(--slate-300);
+  --text-faint:     var(--slate-400);
+  --border-subtle:  var(--navy-800);
+  --border-control: var(--navy-500);
+  --border-strong:  var(--white);
+  --link:           var(--white);
+  --eyebrow:        var(--gold-400);
+  --highlight:      var(--gold-400);
+  --tag-bg:         var(--white-10);
+  --tag-text:       var(--white);
+  --focus-ring:     var(--gold-400);
+  color-scheme: dark;
+}
+
+/* 2c. Type, spacing, radius, motion (theme-independent) */
+:root {
+  --font-display: var(--font-serif-latin), var(--font-serif-arm), Georgia, serif;
+  --font-body:    var(--font-sans-latin), var(--font-sans-arm), system-ui, sans-serif;
+  --font-mono:    var(--font-mono-latin), var(--font-sans-arm), ui-monospace, monospace;
+  --weight-body:    var(--weight-400);
+  --weight-medium:  var(--weight-500);
+  --weight-label:   var(--weight-600);
+  --weight-strong:  var(--weight-700);
+  --weight-heading: var(--weight-600);   /* Playfair headings */
+  --weight-display: var(--weight-600);
+  --weight-place:   var(--weight-400);   /* home place names */
+
+  /* Scale (desktop; steps down at 1080 and 760, see below) */
+  --text-hero:     var(--size-88);   /* home headline */
+  --text-hero-hy:  var(--size-72);   /* Armenian runs longer: one step down */
+  --text-title:    var(--size-72);   /* destination title */
+  --text-page:     var(--size-64);   /* page titles */
+  --text-h1:       var(--size-64);   /* alias for docs */
+  --text-h2:       var(--size-56);   /* home sections */
+  --text-h2-page:  var(--size-44);   /* page sections */
+  --text-place:    var(--size-64);   /* home place card name */
+  --text-card:     var(--size-40);   /* Places card name */
+  --text-card-sm:  var(--size-30);   /* More guides, fact title (34) */
+  --text-fact:     var(--size-34);
+  --text-h3:       var(--size-28);   /* day titles, list headings */
+  --text-ig:       var(--size-30);   /* Instagram heading */
+  --text-lead:     var(--size-20);
+  --text-lede:     var(--size-18);
+  --text-body:     var(--size-17);
+  --text-ui:       var(--size-15);   /* nav, chips, small buttons */
+  --text-small:    var(--size-14);
+  --text-label:    var(--size-12);   /* mono labels */
+  --text-micro:    var(--size-11);   /* mono fact labels, captions */
+  --text-logo:     var(--size-13);
+  --text-logo-display:    var(--size-20);  /* wordmark, desktop header */
+  --text-logo-display-sm: var(--size-18);  /* wordmark, footer + mobile header */
+
+  --leading-display: var(--leading-104);
+  --leading-heading: var(--leading-108);
+  --leading-title:   var(--leading-100);
+  --leading-snug:    var(--leading-120);
+  --leading-copy:    var(--leading-155);
+  --leading-read:    var(--leading-160);
+  --leading-extra-hy: 0.15;
+
+  --tracking-label: var(--track-14);
+  --tracking-btn:   var(--track-12);
+  --tracking-logo:  var(--track-16);
+  --tracking-caption: var(--track-6);
+  --tracking-switch: var(--track-10);
+
+  --gap-hair:    var(--space-1);    /* 4 */
+  --gap-tiny:    var(--space-0);    /* 2 */
+  --gap-inline:  var(--space-2);    /* 8 */
+  --gap-related: var(--space-3);    /* 12 */
+  --gap-stack:   var(--space-4);    /* 16 */
+  --gap-icon:    var(--space-4b);   /* 20 */
+  --pad-box:     var(--space-5);    /* 24 */
+  --gap-block:   var(--space-6);    /* 32 */
+  --gap-group:   var(--space-6b);   /* 40 */
+  --gap-wide:    var(--space-7);    /* 48 */
+  --gap-grid:    var(--space-8);    /* 64 */
+  --gap-page-top: var(--space-7b);  /* 56 */
+  --section-page: var(--space-10);  /* 96 between destination sections */
+  --gap-section: var(--space-11);   /* 120 home sections */
+  --gap-intro:   var(--space-8b);   /* 72 under a section intro */
+  --pad-panel:   var(--space-9);    /* 80 inside home place cards */
+  --section-tight: var(--space-9);  /* 80 Instagram band */
+  --gutter:      var(--space-6b);   /* 40 */
+  --pad-control-x: var(--space-4b); /* 20 */
+
+  --radius-flag:     var(--radius-2);
+  --radius-switch:   var(--radius-4);
+  --radius-btn:      var(--radius-6);
+  --radius-chip:     var(--radius-8);
+  --radius-photo-sm: var(--radius-12);
+  --radius-map:      var(--radius-14);
+  --radius-card:     var(--radius-16);
+  --radius-box:      var(--radius-16);
+  --radius-band:     var(--radius-18);
+  --radius-panel:    var(--radius-20);
+  --radius-stage:    var(--radius-24);
+  --radius-round:    var(--radius-pill);
+  --radius-photo:    var(--radius-12);   /* docs site */
+
+  --motion-ease: var(--ease-calm);
+  --motion-fast: var(--dur-150);
+  --motion-base: var(--dur-250);
+  --motion-map:  var(--dur-350);
+  --motion-photo: var(--dur-600);
+  --motion-pop:  var(--dur-700);
+  --motion-slow: var(--dur-900);
+  --motion-wheel-ease: var(--ease-wheel);
+  --motion-pop-ease: var(--ease-pop);
+
+  --target-min:  var(--tap-44);
+  --target-btn:  var(--tap-48);
+  --measure:     var(--read-680);
+  --page-max:    var(--page-1280);
+  --focus-width: 2px;
+  --focus-offset: 3px;
+}
+
+/* 2d. Fixed colour jobs (the same in every theme: maps, photos, topics, card tints) */
+:root {
+  --flag-edge:    var(--shadow-ring);
+  --panel-dim:     var(--dim-1);
+  --panel-reveal-shade: var(--shade-75);
+  --map-bg:       var(--navy-900);
+  --map-sea:      var(--navy-950);
+  --map-land:     var(--navy-700);
+  --map-border:   var(--navy-500);
+  --map-edge:     var(--navy-800);
+  --map-dot:      var(--gold-400);
+  --map-dot-ring: var(--gold-22);
+  --map-dot-glow: var(--gold-35);
+  --map-card-bg:  var(--white);
+  --map-card-text: var(--ink-900);
+  --map-ctrl-bg:  var(--navy-88);
+  --month-on-bg:  var(--white);
+  --month-on-text: var(--ink-900);
+  --ig-shade:    var(--shade-30);
+  --ig-frame:    var(--white-92);
+  --ig-panel:    var(--panel-90);
+  --island-sea:     var(--sea-200);
+  --island-land:    var(--white);
+  --island-coast:   var(--coast-300);
+  --island-note:    var(--map-note-600);
+  --pin-label-bg:   var(--white-92);
+  --caption-bg:     var(--shade-60);
+  --wheel-ground:  var(--navy-800);
+  --wheel-pointer: var(--gold-400);
+  --wheel-pointer-glow: var(--gold-55);
+  --hub-bg:        var(--navy-800);
+  --hub-hover:     var(--navy-600);
+  --hub-line:      var(--white-28);
+  --topic-cities-bg: var(--navy-600);   --topic-cities-text: var(--white);
+  --topic-nature-bg: var(--blue-600);   --topic-nature-text: var(--white);
+  --topic-food-bg:   var(--gold-400);   --topic-food-text:   var(--ink-900);
+  --topic-culture-bg: var(--orange-500); --topic-culture-text: var(--ink-900);
+  --hero-scrim:
+    linear-gradient(180deg, var(--shade-55) 0%, var(--shade-0) 22%, var(--shade-0) 55%, var(--shade-60) 100%),
+    linear-gradient(90deg, var(--shade-80) 0%, var(--shade-50) 42%, var(--shade-12) 75%),
+    var(--shade-25);
+  --confetti: var(--gold-400), var(--orange-500), var(--white), var(--blue-600), var(--gold-400);
+  --tint-card-split:    var(--tint-split);
+  --tint-card-srilanka: var(--tint-srilanka);
+  --tint-card-rhodes:   var(--tint-rhodes);
+  --tint-card-prague:   var(--tint-prague);
+}
+
+@media (max-width: 1080px) {
+  :root {
+    --text-hero: var(--size-68);
+    --text-hero-hy: var(--size-56);
+    --text-card: var(--size-34);
+    --gutter:    var(--space-5);    /* 24 */
+    --gap-page-top: var(--space-6b);
+  }
+}
+@media (max-width: 760px) {
+  :root {
+    --text-hero:    var(--size-48);
+    --text-hero-hy: var(--size-36);
+    --text-title:   var(--size-52);
+    --text-page:    var(--size-40);
+    --text-h1:      var(--size-40);
+    --text-h2:      var(--size-36);
+    --text-h2-page: var(--size-34);
+    --text-place:   var(--size-44);
+    --text-card:    var(--size-30);
+    --text-card-sm: var(--size-26);
+    --text-fact:    var(--size-28);
+    --text-h3:      var(--size-24);
+    --text-ig:      var(--size-28);
+    --text-lead:    var(--size-17);
+    --text-lede:    var(--size-16);
+    --gutter:       var(--space-4);   /* 16 */
+    --gap-section:  var(--space-9);   /* 80 */
+    --gap-intro:    var(--space-6b);  /* 40 */
+    --section-page: var(--space-8b);  /* 72 */
+    --gap-grid:     var(--space-7);   /* 48 */
+    --gap-page-top: var(--space-5);
+  }
+}
+
+
+/* ---------------------------------------------------------------------
+   3. COMPONENT TOKENS
+   Each points to a semantic token. Declared on every [data-theme] too,
+   so a navy section re-reads its own semantic colours.
+   --------------------------------------------------------------------- */
+:root,
+[data-theme] {
+  /* Buttons */
+  --btn-height:        var(--target-btn);
+  --btn-radius:        var(--radius-btn);
+  --btn-gap:           var(--gap-related);
+  --btn-mono-size:     var(--text-logo);
+  --btn-primary-bg:    var(--action-on-photo);
+  --btn-primary-hover: var(--action-on-photo-hover);
+  --btn-primary-text:  var(--action-on-photo-text);
+  --btn-outline-line:  var(--border-strong);
+  --btn-outline-text:  var(--text-primary);
+  --btn-outline-hover: var(--surface-sunken);
+  --btn-small-radius:  var(--radius-chip);
+  --btn-solid-bg:      var(--action-solid);
+  --btn-solid-hover:   var(--action-solid-hover);
+  --btn-solid-text:    var(--action-solid-text);
+  --btn-ghost-line:    var(--border-control);
+  --btn-ghost-hover:   var(--border-strong);
+
+  /* Header and footer */
+  --header-h:        72px;
+  --header-bg:       var(--surface-page);
+  --header-line:     var(--border-subtle);
+  --header-link:     var(--text-muted);
+  --header-link-on:  var(--text-primary);
+  --lang-line:       var(--border-control);
+  --lang-radius:     var(--radius-switch);
+
+  /* Labels and chips */
+  --label-bg:     var(--tag-bg);
+  --label-text:   var(--tag-text);
+  --label-radius: var(--radius-chip);
+  --chip-line:    var(--border-control);
+  --chip-on-bg:   var(--action-solid);
+  --chip-on-text: var(--action-solid-text);
+  --chip-text:    var(--status-checked);   /* Checked line */
+
+  /* Hero */
+  --hero-h:        900px;
+  --hero-inset:    var(--section-page);   /* 96 */
+  --hero-top:      250px;
+  --hero-ground:   var(--surface-page);
+
+  /* Home place cards */
+  --panel-h:       660px;
+  --panel-top:     var(--pad-box);
+  --panel-radius:  var(--radius-panel);
+
+  /* Month map */
+  --map-radius:   var(--radius-map);
+  --map-card-radius: var(--radius-chip);
+
+  /* Instagram band */
+  --ig-h:        560px;
+  --ig-radius:   var(--radius-band);
+  --ig-btn-bg:   var(--action-on-photo);
+  --ig-btn-hover: var(--action-on-photo-hover);
+
+  /* Place cards (Places page, More guides) */
+  --card-photo-radius: var(--radius-card);
+  --card-photo-ratio:  3 / 2;
+
+  /* Destination */
+  --cover-h:        380px;
+  --cover-radius:   var(--radius-switch);
+  --toc-w:          220px;
+  --toc-on:         var(--accent);
+  --day-dot:        var(--action-solid);
+  --day-line:       var(--border-subtle);
+  --stop-dot:       var(--accent);
+  --pin-bg:         var(--action-solid);
+  --pin-on:         var(--accent);
+  --table-total-bg: var(--action-solid);
+  --table-total-text: var(--action-solid-text);
+
+  /* Did you know? */
+  --stage-radius:  var(--radius-stage);
+  --fact-radius:   var(--radius-panel);
+}
