@@ -31,7 +31,7 @@ Then open http://localhost:8000. (Opening `index.html` directly also works, but 
 
 ## Publish on GitHub Pages
 
-The repository is github.com/InesaKhachatrian/slowsuns. Commit and push to `main`; in the repository's Settings › Pages, choose "Deploy from a branch", branch `main`, folder `/ (root)`. The site appears at https://inesakhachatrian.github.io/slowsuns/.
+The repository is github.com/InesaKhachatrian/slowsuns. The live site is **https://inesakhachatrian.github.io/slowsuns/**, built from `main` (folder `/ (root)`), configured in the repository's Settings › Pages. Every push to `main` rebuilds it automatically — no extra steps.
 
 ## Still placeholder
 
