@@ -25,6 +25,6 @@
 }
 @media (max-width: 760px) {
   :root { --hero-h: 780px; }
-  .hero__text { inset-inline: var(--gutter); inset-block: auto 150px; }
+  .hero__text { inset-inline: var(--gutter); inset-block-start: 50%; transform: translateY(-50%); }
   .hero__sub { margin-block-end: var(--pad-box); }
 }

@@ -84,6 +84,7 @@
 
 @media (max-width: 1080px) { .month-map__grid { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 760px) {
+  .month-map { aspect-ratio: 4 / 5; }
   .month-map-sec .months { margin-block: var(--gap-block) var(--pad-control-x); }
   .map-card { inline-size: 76px; padding: 4px 4px 0; }
   .map-card img { block-size: 56px; }

@@ -93,11 +93,12 @@
     card.insertBefore(svg, $(".place-panel__dim", card));
     return { blur: blur, fa: fa, solid: solid, dark: dark, g: g, cx: x + w / 2, cy: y + w / 2, p: 0 };
   }
+  var noHover = window.matchMedia && window.matchMedia("(hover: none)").matches;
   panels.forEach(function (card, i) {
     var btn = $(".place-panel__explore", card); if (!btn) return;
     var R = null, id = 0;
-    function to(target) {
-      if (!R || R.stale) { R = buildReveal(card, i); if (!R) return; }
+    function to(target, done) {
+      if (!R || R.stale) { R = buildReveal(card, i); if (!R) { if (done) done(); return; } }
       var from = R.p, dur = reduce ? 0 : (target > from ? 900 : 650) * Math.abs(target - from), t0 = performance.now();
       var ease = function (x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
       cancelAnimationFrame(id);
@@ -113,13 +114,21 @@
         R.dark.setAttribute("opacity", Math.max(0, (p - .25) / .75).toFixed(3));
         var z = 1 + 0.03 * p;
         R.g.setAttribute("transform", "translate(" + R.cx + " " + R.cy + ") scale(" + z.toFixed(4) + ") translate(" + (-R.cx) + " " + (-R.cy) + ")");
-        if (k < 1) id = requestAnimationFrame(step);
+        if (k < 1) id = requestAnimationFrame(step); else if (done) done();
       })(t0);
     }
-    btn.addEventListener("mouseenter", function () { to(1); });
-    btn.addEventListener("focus", function () { to(1); });
-    btn.addEventListener("mouseleave", function () { to(0); });
-    btn.addEventListener("blur", function () { to(0); });
+    if (noHover) {
+      /* No hover on touch: play the reveal first, then go to the guide. */
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        to(1, function () { window.location.href = btn.href; });
+      });
+    } else {
+      btn.addEventListener("mouseenter", function () { to(1); });
+      btn.addEventListener("focus", function () { to(1); });
+      btn.addEventListener("mouseleave", function () { to(0); });
+      btn.addEventListener("blur", function () { to(0); });
+    }
     window.addEventListener("resize", function () { if (R) R.stale = true; });
   });
 
